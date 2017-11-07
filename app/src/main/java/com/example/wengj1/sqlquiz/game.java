@@ -20,7 +20,7 @@ public class game extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.game);
 
         previous = (ImageButton)findViewById(R.id.previous);
         next = (ImageButton)findViewById(R.id.next);
