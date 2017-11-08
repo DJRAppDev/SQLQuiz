@@ -9,12 +9,14 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 public class Game extends AppCompatActivity {
     private ImageButton previous, next;
     private Button submit;
     private RadioGroup radioGroup;
+    private ScrollView scroll;
     private TextView question;
     private int count;
 
@@ -28,6 +30,7 @@ public class Game extends AppCompatActivity {
         submit = (Button)findViewById(R.id.answer);
         radioGroup = (RadioGroup)findViewById(R.id.radiogroup);
         question = (TextView) findViewById(R.id.question);
+        //scroll = (ScrollView)findViewById(R.id.scrollText);
         count = 0;
 
         submit.setOnClickListener(new View.OnClickListener() {
