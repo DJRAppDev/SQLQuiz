@@ -10,14 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="256dp"
         android:adjustViewBounds="true"
-        app:srcCompat="@drawable/congrats_web" />
+        app:srcCompat="@drawable/congrats_web" android:contentDescription="@string/todo" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
-        android:text="Score:"
+        android:text="@string/score"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
         android:textSize="40sp"
@@ -26,14 +26,14 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="79dp"
-        android:layout_height="0dp" />
+        android:layout_height="0dp" android:contentDescription="@string/todo" />
 
     <TextView
         android:id="@+id/score"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.28"
-        android:text="0/0"
+        android:text="@string/_0_0"
         android:textAlignment="center"
         android:textSize="80sp" />
 
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="0.18"
         android:backgroundTint="@android:color/holo_green_light"
-        android:text="Play Again" />
+        android:text="@string/play_again" />
 
     <Button
         android:id="@+id/restartButton"
@@ -53,5 +53,5 @@
         android:layout_height="wrap_content"
         android:layout_weight="0.18"
         android:backgroundTint="@android:color/holo_blue_light"
-        android:text="Exit" />
+        android:text="@string/exit" />
 </LinearLayout>
