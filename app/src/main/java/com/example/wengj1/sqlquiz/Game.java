@@ -45,6 +45,7 @@ public class Game extends AppCompatActivity {
     private void change(){
         if(count >= 30) {
             Intent intent = new Intent(Game.this, End.class);
+            intent.putExtra("COUNT",count);
             startActivity(intent);
         }
     }
