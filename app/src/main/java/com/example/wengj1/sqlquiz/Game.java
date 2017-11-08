@@ -16,6 +16,7 @@ public class Game extends AppCompatActivity {
     private Button submit;
     private RadioGroup radioGroup;
     private TextView question;
+    private int count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,5 +28,22 @@ public class Game extends AppCompatActivity {
         submit = (Button)findViewById(R.id.answer);
         radioGroup = (RadioGroup)findViewById(R.id.radiogroup);
         question = (TextView) findViewById(R.id.question);
+        count = 0;
+
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                count += 1;
+                change();
+            }
+        });
     }
+
+    private void change(){
+        if(count >= 30) {
+            Intent intent = new Intent(Game.this, End.class);
+            startActivity(intent);
+        }
+    }
+
 }
