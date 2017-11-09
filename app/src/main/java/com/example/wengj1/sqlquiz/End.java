@@ -12,18 +12,17 @@ public class End extends AppCompatActivity {
     Button exit;
     Button replay;
     TextView score;
-    private String correct;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        replay = (Button)findViewById(R.id.restartButton);
-        exit = (Button)findViewById(R.id.exitButton);
-        extras = getIntent().getExtras();
-        score = (TextView)findViewById(R.id.score);
+        replay = findViewById(R.id.restartButton);
+        exit = findViewById(R.id.exitButton);
+        score = findViewById(R.id.score);
+
+        String correct = getIntent().getStringExtra("Count");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.end);
-        correct = extras.getString("COUNT");
         score.setText(correct+"/30");
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
