@@ -9,17 +9,21 @@ public class Quiz {
     @PrimaryKey(autoGenerate = true)
     private int qID;
 
+    @ColumnInfo(name = "category")
+    private String category;
+
     @ColumnInfo(name = "question")
     private String question;
 
     @ColumnInfo(name = "answer")
     private String answer;
 
-    @ColumnInfo(name = "category_ID")
-    private int catID;
-
     public int getqID() {
         return qID;
+    }
+
+    public String getCat() {
+        return category;
     }
 
     public String getQuestion() {
@@ -28,9 +32,5 @@ public class Quiz {
 
     public String getAnswer() {
         return answer;
-    }
-
-    public int getCatID() {
-        return catID;
     }
 }
