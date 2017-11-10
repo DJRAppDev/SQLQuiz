@@ -7,11 +7,16 @@ import java.util.List;
 
 @Dao
 public interface QuizDao {
-    @Query("SELECT answer FROM Quiz WHERE qID IS :id")
+    //Question table methods
+    @Query("SELECT answer FROM questions WHERE qID IS :id")
     String getAnswer(int id);
 
-    @Query("SELECT * FROM Quiz WHERE category LIKE :cat")
-    List<Questions> getQuestions(String cat);
+    @Query("SELECT * FROM questions WHERE category LIKE :cat")
+    List<Question> getQuestions(String cat);
 
-    //@Insert
+    //Answer table methods
+    @Query("SELECT userAns FROM answers WHERE qID IS :id")
+    String getUserAns(int id);
+
+
 }

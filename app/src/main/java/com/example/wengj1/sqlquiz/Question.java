@@ -5,17 +5,17 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
 @Entity(tableName = "questions")
-public class Questions {
+public class Question {
     @PrimaryKey(autoGenerate = true)
     private int qID;
 
-    @ColumnInfo(name = "category")
+    @ColumnInfo
     private String category;
 
-    @ColumnInfo(name = "question")
+    @ColumnInfo
     private String question;
 
-    @ColumnInfo(name = "answer")
+    @ColumnInfo
     private String answer;
 
     public int getqID() {
