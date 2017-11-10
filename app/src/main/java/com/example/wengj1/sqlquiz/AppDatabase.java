@@ -9,6 +9,7 @@ import android.content.Context;
 @Database(entities = {Question.class, Answer.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase INSTANCE;
+    public abstract QuizDao quizDao();
 
     public static AppDatabase getAppDatabase(Context context) {
         if (INSTANCE == null) {
@@ -28,8 +29,5 @@ public abstract class AppDatabase extends RoomDatabase {
         q.setAnswer(answer);
         db.quizDao().insertQuestion(q);
     }
-
-    public abstract QuizDao quizDao();
-
 
 }
