@@ -6,7 +6,7 @@ import android.arch.persistence.room.PrimaryKey;
 
 @Entity(tableName = "questions")
 public class Question {
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     private int qID;
 
     @ColumnInfo
@@ -22,15 +22,31 @@ public class Question {
         return qID;
     }
 
-    public String getCat() {
+    public void setqID(int qID) {
+        this.qID = qID;
+    }
+
+    public String getCategory() {
         return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getQuestion() {
         return question;
     }
 
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
     public String getAnswer() {
         return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 }
