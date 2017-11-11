@@ -7,6 +7,3 @@ Created by:
 -James Weng
 
 -Ryan Xu
-
-
--Will we fail this? Find out!
