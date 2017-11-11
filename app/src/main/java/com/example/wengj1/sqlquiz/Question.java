@@ -7,7 +7,7 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity(tableName = "questions")
 public class Question {
     @PrimaryKey
-    private int qID;
+    private int id;
 
     @ColumnInfo
     private String category;
@@ -18,12 +18,12 @@ public class Question {
     @ColumnInfo
     private String answer;
 
-    public int getqID() {
-        return qID;
+    public int getId() {
+        return id;
     }
 
-    public void setqID(int qID) {
-        this.qID = qID;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getCategory() {

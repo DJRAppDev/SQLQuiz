@@ -12,6 +12,8 @@ import java.util.List;
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase INSTANCE;
 
+    public abstract QuizDao quizDao();
+
     public static AppDatabase getAppDatabase(Context context) {
         if (INSTANCE == null) {
             INSTANCE = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, "quiz-database").build();
@@ -23,9 +25,9 @@ public abstract class AppDatabase extends RoomDatabase {
         INSTANCE = null;
     }
 
-    public static void addQuestion(final AppDatabase db, int qID, String category, String question, String answer) {
+    public static void addQuestion(final AppDatabase db, int id, String category, String question, String answer) {
         Question q = new Question();
-        q.setqID(qID);
+        q.setId(id);
         q.setCategory(category);
         q.setQuestion(question);
         q.setAnswer(answer);
@@ -36,24 +38,22 @@ public abstract class AppDatabase extends RoomDatabase {
         return db.quizDao().getQuestions(category);
     }
 
-    public static void addAnswer(final AppDatabase db, int qID, String answer) {
+    public static void addAnswer(final AppDatabase db, int id, String answer) {
         Answer a = new Answer();
-        a.setqID(qID);
+        a.setId(id);
         a.setUserAns(answer);
         db.quizDao().insertAns(a);
     }
 
-    public static String getUserAnswer(final AppDatabase db, int qID) {
-        return db.quizDao().getUserAns(qID);
+    public static String getUserAnswer(final AppDatabase db, int id) {
+        return db.quizDao().getUserAns(id);
     }
 
-    public static String getAnswer(final AppDatabase db, int qID) {
-        return db.quizDao().getAnswer(qID);
+    public static String getAnswer(final AppDatabase db, int id) {
+        return db.quizDao().getAnswer(id);
     }
 
-    public static String getQuestion(final AppDatabase db, int qID) {
-        return db.quizDao().getQuestion(qID);
+    public static String getQuestion(final AppDatabase db, int id) {
+        return db.quizDao().getQuestion(id);
     }
-
-    public abstract QuizDao quizDao();
 }
