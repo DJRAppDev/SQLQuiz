@@ -15,6 +15,9 @@ public interface QuizDao {
     @Query("SELECT * FROM questions WHERE category LIKE :cat")
     List<Question> getQuestions(String cat);
 
+    @Query("SELECT question FROM questions WHERE qID IS :id")
+    String getQuestion(int qID);
+
     @Insert
     void insertQuestion(Question question);
 
