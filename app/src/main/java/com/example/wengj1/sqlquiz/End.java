@@ -10,14 +10,14 @@ import android.widget.TextView;
 public class End extends AppCompatActivity {
     Bundle extras;
     Button exit;
-    Button replay;
+    Button review;
     TextView score;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        replay = findViewById(R.id.restartButton);
-        exit = findViewById(R.id.exitButton);
-        score = findViewById(R.id.score);
+        exit = (Button) findViewById(R.id.exitButton);
+        review = (Button) findViewById(R.id.reviewButton);
+        score = (TextView) findViewById(R.id.score);
 
         String correct = getIntent().getStringExtra("Count");
 
@@ -31,7 +31,7 @@ public class End extends AppCompatActivity {
                 System.exit(0);
             }
         });
-        replay.setOnClickListener(new View.OnClickListener() {
+        review.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(End.this,MainActivity.class);

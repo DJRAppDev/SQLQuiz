@@ -6,17 +6,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
-    private Button play;
+public class Review extends AppCompatActivity {
+    private Button exit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        play = (Button) findViewById(R.id.play);
-        play.setOnClickListener(new View.OnClickListener() {
+        setContentView(R.layout.review);
+        exit = (Button) findViewById(R.id.exitButton2);
+        exit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,Categories.class);
+                Intent intent = new Intent(Review.this, MainActivity.class);
                 startActivity(intent);
             }
         });

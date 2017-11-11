@@ -25,11 +25,11 @@ public class Game extends AppCompatActivity {
 
         String cate = getIntent().getStringExtra("category");
 
-        previous = findViewById(R.id.previous);
-        next = findViewById(R.id.next);
-        submit = findViewById(R.id.answer);
-        radioGroup = findViewById(R.id.radiogroup);
-        question = findViewById(R.id.question);
+        previous = (ImageButton) findViewById(R.id.previous);
+        next = (ImageButton) findViewById(R.id.next);
+        submit = (Button) findViewById(R.id.answer);
+        radioGroup = (RadioGroup) findViewById(R.id.radiogroup);
+        question = (TextView) findViewById(R.id.question);
         //scroll = (ScrollView)findViewById(R.id.scrollText);
         count = 0;
 

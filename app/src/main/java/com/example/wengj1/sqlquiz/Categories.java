@@ -15,7 +15,7 @@ public class Categories extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.categories);
 
-        iteration = findViewById(R.id.iteration);
+        iteration = (Button) findViewById(R.id.iteration);
 
         iteration.setOnClickListener(new View.OnClickListener() {
             @Override
