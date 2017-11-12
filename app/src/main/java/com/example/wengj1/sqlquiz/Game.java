@@ -45,14 +45,19 @@ public class Game extends AppCompatActivity {
                 int btID = radioGroup.getCheckedRadioButtonId();
                 switch (btID) {
                     case R.id.choice1:
+                        Log.d("Checked Button", "A");
                         break;
                     case R.id.choice2:
+                        Log.d("Checked Button", "B");
                         break;
                     case R.id.choice3:
+                        Log.d("Checked Button", "C");
                         break;
                     case R.id.choice4:
+                        Log.d("Checked Button", "D");
                         break;
                     case R.id.choice5:
+                        Log.d("Checked Button", "E");
                         break;
                     default:
                         Log.d("Checked Button", "No work");
