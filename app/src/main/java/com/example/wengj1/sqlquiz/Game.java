@@ -1,10 +1,9 @@
 package com.example.wengj1.sqlquiz;
 
+import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
@@ -20,6 +19,7 @@ public class Game extends AppCompatActivity {
     private ScrollView scroll;
     private TextView question;
     private int count;
+    private AppDatabase appDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +27,7 @@ public class Game extends AppCompatActivity {
         setContentView(R.layout.game);
 
         String cate = getIntent().getStringExtra("category");
+        appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "quiz-database").build();
 
         submit = findViewById(R.id.answer);
         radioGroup = findViewById(R.id.radiogroup);
@@ -38,7 +39,7 @@ public class Game extends AppCompatActivity {
         E = findViewById(R.id.choice5);
         count = 0;
 
-        submit.setOnClickListener(new View.OnClickListener() {
+/*        submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 count += 1;
@@ -65,7 +66,7 @@ public class Game extends AppCompatActivity {
                 }
                 change();
             }
-        });
+        });*/
     }
 
     private void change(){
