@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SQLQuiz.iml" filepath="$PROJECT_DIR$/SQLQuiz.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SQLQuiz.iml" filepath="$PROJECT_DIR$/SQLQuiz.iml" />
+      <module fileurl="file://D:\2._App_Development\Projects\SQLQuiz\SQLQuiz.iml" filepath="D:\2._App_Development\Projects\SQLQuiz\SQLQuiz.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
