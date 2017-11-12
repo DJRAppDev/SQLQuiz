@@ -8,7 +8,7 @@ import android.content.Context;
 
 import java.util.List;
 
-@Database(entities = {Question.class, Answer.class}, version = 1)
+@Database(entities = {Question.class, Answer.class}, version = 1,exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase INSTANCE;
 
@@ -25,11 +25,16 @@ public abstract class AppDatabase extends RoomDatabase {
         INSTANCE = null;
     }
 
-    public static void addQuestion(final AppDatabase db, int id, String category, String question, String answer) {
+    public static void addQuestion(final AppDatabase db, int id, String category, String question, String[] choices, String answer) {
         Question q = new Question();
         q.setId(id);
         q.setCategory(category);
         q.setQuestion(question);
+        q.setAnsA(choices[0]);
+        q.setAnsB(choices[1]);
+        q.setAnsC(choices[2]);
+        q.setAnsD(choices[3]);
+        q.setAnsE(choices[4]);
         q.setAnswer(answer);
         db.quizDao().insertQuestion(q);
     }
@@ -55,5 +60,9 @@ public abstract class AppDatabase extends RoomDatabase {
 
     public static String getQuestion(final AppDatabase db, int id) {
         return db.quizDao().getQuestion(id);
+    }
+
+    public static void addQuestions(final AppDatabase db, List<Question> questions) {
+        db.quizDao().insertQuestions(questions);
     }
 }
