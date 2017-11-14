@@ -11,6 +11,8 @@ import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class Game extends AppCompatActivity {
     private ImageButton previous, next;
     private Button submit;
@@ -20,6 +22,7 @@ public class Game extends AppCompatActivity {
     private TextView question;
     private int count;
     private AppDatabase appDatabase;
+    private ArrayList<Question> questions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +30,7 @@ public class Game extends AppCompatActivity {
         setContentView(R.layout.game);
 
         String cate = getIntent().getStringExtra("category");
-        appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "quiz-database").build();
+        appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "quiz").build();
 
         submit = findViewById(R.id.answer);
         radioGroup = findViewById(R.id.radiogroup);
@@ -38,8 +41,10 @@ public class Game extends AppCompatActivity {
         D = findViewById(R.id.choice4);
         E = findViewById(R.id.choice5);
         count = 0;
-
-/*        submit.setOnClickListener(new View.OnClickListener() {
+        questions = (ArrayList) appDatabase.quizDao().getQuestions("Iteration");
+        question.setText(questions.get(0).getQuestion());
+/*
+        submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 count += 1;
@@ -66,7 +71,8 @@ public class Game extends AppCompatActivity {
                 }
                 change();
             }
-        });*/
+        });
+*/
     }
 
     private void change(){
