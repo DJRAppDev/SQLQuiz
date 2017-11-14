@@ -21,7 +21,7 @@ public class Game extends AppCompatActivity {
     private ScrollView scroll;
     private TextView question;
     private int count;
-    private AppDatabase appDatabase;
+    private AppDatabase db;
     private ArrayList<Question> questions;
 
     @Override
@@ -29,8 +29,8 @@ public class Game extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
 
-        String cate = getIntent().getStringExtra("category");
-        appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "quiz").build();
+        String category = getIntent().getStringExtra("category");
+        db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "quiz").allowMainThreadQueries().build();
 
         submit = findViewById(R.id.answer);
         radioGroup = findViewById(R.id.radiogroup);
@@ -41,7 +41,11 @@ public class Game extends AppCompatActivity {
         D = findViewById(R.id.choice4);
         E = findViewById(R.id.choice5);
         count = 0;
-        questions = (ArrayList) appDatabase.quizDao().getQuestions("Iteration");
+        Question q0 = new Question();
+        q0.setQuestion("Hello!");
+        q0.setCategory("Iteration");
+        questions = (ArrayList) db.quizDao().getQuestions("Iteration");
+        db.quizDao().insertQuestion(q0);
         question.setText(questions.get(0).getQuestion());
 /*
         submit.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +78,6 @@ public class Game extends AppCompatActivity {
         });
 */
     }
-
     private void change(){
         if(count >= 30) {
             Intent intent = new Intent(Game.this, End.class);
