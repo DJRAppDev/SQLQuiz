@@ -45,7 +45,7 @@ public class Game extends AppCompatActivity {
         q0.setQuestion("Hello!");
         q0.setCategory("Iteration");
         questions = (ArrayList) db.quizDao().getQuestions("Iteration");
-        db.quizDao().insertQuestion(q0);
+        //db.quizDao().insertQuestion(q0);
         question.setText(questions.get(0).getQuestion());
 /*
         submit.setOnClickListener(new View.OnClickListener() {
