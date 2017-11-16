@@ -15,11 +15,11 @@ public class End extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        exit = (Button) findViewById(R.id.exitButton);
-        review = (Button) findViewById(R.id.reviewButton);
-        score = (TextView) findViewById(R.id.score);
+        exit = findViewById(R.id.exitButton);
+        review = findViewById(R.id.reviewButton);
+        score = findViewById(R.id.score);
 
-        String correct = getIntent().getStringExtra("Count");
+        String correct = getIntent().getStringExtra("Answer");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.end);

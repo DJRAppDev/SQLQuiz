@@ -4,6 +4,8 @@ import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
@@ -22,9 +24,10 @@ public class Game extends AppCompatActivity {
     private RadioButton A, B, C, D, E;
     private ScrollView scroll;
     private TextView question;
-    private int count;
+    private int count, correct;
     private AppDatabase db;
     private List<Question> questions;
+    private Question currentQuestion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,16 +46,18 @@ public class Game extends AppCompatActivity {
         D = findViewById(R.id.choice4);
         E = findViewById(R.id.choice5);
         count = 0;
-        Question q = new Question("Iteration", "What is the integral of e^x?", "e^x", "e^x+C", "ln(x)", "1/x", "1", "B");
-        db.quizDao().insertQuestion(q);
-        questions = db.quizDao().getQuestions("Iteration");
-        question.setText(questions.get(0).getQuestion());
-        A.setText(questions.get(0).getAnsA());
-        B.setText(questions.get(0).getAnsB());
-        C.setText(questions.get(0).getAnsC());
-        D.setText(questions.get(0).getAnsD());
-        E.setText(questions.get(0).getAnsE());
-        /*
+        correct = 0;
+        questions = db.quizDao().getQuestions(category);
+
+        currentQuestion = questions.get(count);
+        question.setText(currentQuestion.getQuestion());
+        A.setText(currentQuestion.getAnsA());
+        B.setText(currentQuestion.getAnsB());
+        C.setText(currentQuestion.getAnsC());
+        D.setText(currentQuestion.getAnsD());
+        E.setText(currentQuestion.getAnsE());
+
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,34 +66,53 @@ public class Game extends AppCompatActivity {
                 switch (btID) {
                     case R.id.choice1:
                         Log.d("Checked Button", "A");
+                        if (currentQuestion.getAnswer().equals("A"))
+                            correct += 1;
                         break;
                     case R.id.choice2:
                         Log.d("Checked Button", "B");
+                        if (currentQuestion.getAnswer().equals("B"))
+                            correct += 1;
                         break;
                     case R.id.choice3:
                         Log.d("Checked Button", "C");
+                        if (currentQuestion.getAnswer().equals("C"))
+                            correct += 1;
                         break;
                     case R.id.choice4:
                         Log.d("Checked Button", "D");
+                        if (currentQuestion.getAnswer().equals("D"))
+                            correct += 1;
                         break;
                     case R.id.choice5:
                         Log.d("Checked Button", "E");
+                        if (currentQuestion.getAnswer().equals("E"))
+                            correct += 1;
                         break;
                     default:
                         Log.d("Checked Button", "No work");
                         break;
                 }
-                change();
+
+                if (count < 30) {
+                    currentQuestion = questions.get(count);
+                    question.setText(currentQuestion.getQuestion());
+                    A.setText(currentQuestion.getAnsA());
+                    B.setText(currentQuestion.getAnsB());
+                    C.setText(currentQuestion.getAnsC());
+                    D.setText(currentQuestion.getAnsD());
+                    E.setText(currentQuestion.getAnsE());
+                    radioGroup.clearCheck();
+                } else
+                    change();
             }
         });
-*/
+
     }
     private void change(){
-        if(count >= 30) {
-            Intent intent = new Intent(Game.this, End.class);
-            intent.putExtra("Count", count);
-            startActivity(intent);
-        }
+        Intent intent = new Intent(Game.this, End.class);
+        intent.putExtra("Answer", correct);
+        startActivity(intent);
     }
 
 }

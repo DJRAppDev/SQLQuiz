@@ -15,11 +15,11 @@ public class Categories extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.categories);
 
-        iteration = (Button) findViewById(R.id.iteration);
+        iteration = findViewById(R.id.iteration);
 
         iteration.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 Intent intent = new Intent(Categories.this, Game.class);
                 intent.putExtra("category", "iteration");
                 startActivity(intent);
