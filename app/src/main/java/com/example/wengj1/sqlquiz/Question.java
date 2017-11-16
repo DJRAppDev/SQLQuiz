@@ -4,9 +4,9 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
-@Entity(tableName = "questions")
+@Entity(tableName = "Question")
 public class Question {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int id;
 
     @ColumnInfo
@@ -20,6 +20,18 @@ public class Question {
 
     @ColumnInfo
     private String answer;
+
+    public Question(String category, String question, String ansA, String ansB, String ansC, String ansD, String ansE, String answer) {
+        this.id = id;
+        this.category = category;
+        this.question = question;
+        this.ansA = ansA;
+        this.ansB = ansB;
+        this.ansC = ansC;
+        this.ansD = ansD;
+        this.ansE = ansE;
+        this.answer = answer;
+    }
 
     public int getId() {
         return id;

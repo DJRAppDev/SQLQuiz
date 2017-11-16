@@ -11,7 +11,9 @@ import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import com.fstyle.library.helper.AssetSQLiteOpenHelperFactory;
+
+import java.util.List;
 
 public class Game extends AppCompatActivity {
     private ImageButton previous, next;
@@ -22,7 +24,7 @@ public class Game extends AppCompatActivity {
     private TextView question;
     private int count;
     private AppDatabase db;
-    private ArrayList<Question> questions;
+    private List<Question> questions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +32,7 @@ public class Game extends AppCompatActivity {
         setContentView(R.layout.game);
 
         String category = getIntent().getStringExtra("category");
-        db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "quiz").allowMainThreadQueries().build();
+        db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "quiz.db").openHelperFactory(new AssetSQLiteOpenHelperFactory()).allowMainThreadQueries().fallbackToDestructiveMigration().build();
 
         submit = findViewById(R.id.answer);
         radioGroup = findViewById(R.id.radiogroup);
@@ -41,13 +43,16 @@ public class Game extends AppCompatActivity {
         D = findViewById(R.id.choice4);
         E = findViewById(R.id.choice5);
         count = 0;
-        Question q0 = new Question();
-        q0.setQuestion("Hello!");
-        q0.setCategory("Iteration");
-        questions = (ArrayList) db.quizDao().getQuestions("Iteration");
-        //db.quizDao().insertQuestion(q0);
+        Question q = new Question("Iteration", "What is the integral of e^x?", "e^x", "e^x+C", "ln(x)", "1/x", "1", "B");
+        db.quizDao().insertQuestion(q);
+        questions = db.quizDao().getQuestions("Iteration");
         question.setText(questions.get(0).getQuestion());
-/*
+        A.setText(questions.get(0).getAnsA());
+        B.setText(questions.get(0).getAnsB());
+        C.setText(questions.get(0).getAnsC());
+        D.setText(questions.get(0).getAnsD());
+        E.setText(questions.get(0).getAnsE());
+        /*
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

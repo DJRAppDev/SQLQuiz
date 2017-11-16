@@ -4,7 +4,7 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
-@Entity(tableName = "answers")
+@Entity(tableName = "Answer")
 public class Answer {
     @PrimaryKey
     private int id;
