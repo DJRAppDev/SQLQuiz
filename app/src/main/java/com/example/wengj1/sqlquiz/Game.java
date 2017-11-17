@@ -49,7 +49,7 @@ public class Game extends AppCompatActivity {
         questions = db.quizDao().getQuestions(category);
 
         currentQuestion = questions.get(count);
-        question.setText(currentQuestion.getQuestion());
+        question.setText((count+1)+"."+currentQuestion.getQuestion());
         A.setText(currentQuestion.getAnsA());
         B.setText(currentQuestion.getAnsB());
         C.setText(currentQuestion.getAnsC());
@@ -66,24 +66,29 @@ public class Game extends AppCompatActivity {
                     case R.id.choice1:
                         if (currentQuestion.getAnswer().equals("A")) {
                             correct += 1;
+                            userAns = "A";
                             break;
                         }
                     case R.id.choice2:
                         if (currentQuestion.getAnswer().equals("B"))
                             correct += 1;
-                        break;
+                            userAns = "B";
+                            break;
                     case R.id.choice3:
                         if (currentQuestion.getAnswer().equals("C"))
                             correct += 1;
-                        break;
+                            userAns = "C";
+                            break;
                     case R.id.choice4:
                         if (currentQuestion.getAnswer().equals("D"))
                             correct += 1;
-                        break;
+                            userAns = "D";
+                            break;
                     case R.id.choice5:
                         if (currentQuestion.getAnswer().equals("E"))
                             correct += 1;
-                        break;
+                            userAns = "E";
+                            break;
                     default:
                         break;
                 }
@@ -91,15 +96,16 @@ public class Game extends AppCompatActivity {
                 count += 1;
                 if (count < 30) {
                     currentQuestion = questions.get(count);
-                    question.setText(currentQuestion.getQuestion());
+                    question.setText((count+1)+"."+currentQuestion.getQuestion());
                     A.setText(currentQuestion.getAnsA());
                     B.setText(currentQuestion.getAnsB());
                     C.setText(currentQuestion.getAnsC());
                     D.setText(currentQuestion.getAnsD());
                     E.setText(currentQuestion.getAnsE());
                     radioGroup.clearCheck();
-                } else
-                    change();
+                } //else {
+                    //change();
+               // }
             }
         });
 
