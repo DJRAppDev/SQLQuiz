@@ -12,6 +12,11 @@ public class Answer {
     @ColumnInfo
     private String userAns;
 
+    public Answer(int id, String userAns) {
+        this.id = id;
+        this.userAns = userAns;
+    }
+
     public int getId() {
         return id;
     }

@@ -4,7 +4,6 @@ import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -61,39 +60,35 @@ public class Game extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                count += 1;
+                String userAns = "";
                 int btID = radioGroup.getCheckedRadioButtonId();
                 switch (btID) {
                     case R.id.choice1:
-                        Log.d("Checked Button", "A");
-                        if (currentQuestion.getAnswer().equals("A"))
+                        if (currentQuestion.getAnswer().equals("A")) {
                             correct += 1;
-                        break;
+                            break;
+                        }
                     case R.id.choice2:
-                        Log.d("Checked Button", "B");
                         if (currentQuestion.getAnswer().equals("B"))
                             correct += 1;
                         break;
                     case R.id.choice3:
-                        Log.d("Checked Button", "C");
                         if (currentQuestion.getAnswer().equals("C"))
                             correct += 1;
                         break;
                     case R.id.choice4:
-                        Log.d("Checked Button", "D");
                         if (currentQuestion.getAnswer().equals("D"))
                             correct += 1;
                         break;
                     case R.id.choice5:
-                        Log.d("Checked Button", "E");
                         if (currentQuestion.getAnswer().equals("E"))
                             correct += 1;
                         break;
                     default:
-                        Log.d("Checked Button", "No work");
                         break;
                 }
-
+                db.quizDao().insertAns(new Answer(currentQuestion.getId(), userAns));
+                count += 1;
                 if (count < 30) {
                     currentQuestion = questions.get(count);
                     question.setText(currentQuestion.getQuestion());
