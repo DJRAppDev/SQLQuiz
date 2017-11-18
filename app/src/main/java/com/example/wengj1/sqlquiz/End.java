@@ -1,6 +1,7 @@
 package com.example.wengj1.sqlquiz;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,6 +13,7 @@ public class End extends AppCompatActivity {
     Button exit;
     Button review;
     TextView score;
+    MediaPlayer victorymusic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +25,10 @@ public class End extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.end);
+
+        victorymusic = MediaPlayer.create(getApplicationContext(), R.raw.victory_sound_effect);
+        victorymusic.start();
+
         score.setText(correct+"/30");
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
