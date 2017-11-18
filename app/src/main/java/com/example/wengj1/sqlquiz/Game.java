@@ -28,6 +28,7 @@ public class Game extends AppCompatActivity {
     private List<Question> questions;
     private Question currentQuestion;
     private int randomNum;
+    private Answer answer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +95,8 @@ public class Game extends AppCompatActivity {
                     default:
                         break;
                 }
-                db.quizDao().insertAns(new Answer(currentQuestion.getId(), userAns));
+                answer = new Answer(currentQuestion.getId(),userAns);
+                db.quizDao().insertAns(answer);
                 count += 1;
                 if (count < 30) {
                     randomNum = (int)(Math.random()*questions.size());
