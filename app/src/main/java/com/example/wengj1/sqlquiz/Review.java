@@ -14,7 +14,10 @@ public class Review extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.review);
-        exit = (Button) findViewById(R.id.exitButton2);
+
+        exit = findViewById(R.id.exitButton2);
+        restart = findViewById(R.id.exitButton2);
+        
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -23,7 +26,6 @@ public class Review extends AppCompatActivity {
             }
         });
 
-        restart = (Button) findViewById(R.id.exitButton2);
         restart.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent(Review.this, MainActivity.class);
