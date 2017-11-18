@@ -94,7 +94,7 @@ public class Game extends AppCompatActivity {
                     default:
                         break;
                 }
-                db.quizDao().insertAns(new Answer(currentQuestion.getId(), userAns));
+                //db.quizDao().insertAns(new Answer(currentQuestion.getId(), userAns));
                 count += 1;
                 if (count < 30) {
                     randomNum = (int)(Math.random()*questions.size());

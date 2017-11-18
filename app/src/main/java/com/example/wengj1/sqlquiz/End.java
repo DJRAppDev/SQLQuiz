@@ -17,14 +17,14 @@ public class End extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.end);
+
         exit = findViewById(R.id.exitButton);
         review = findViewById(R.id.reviewButton);
         score = findViewById(R.id.score);
 
         String correct = getIntent().getStringExtra("Answer");
-
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.end);
 
         //victorymusic = MediaPlayer.create(getApplicationContext(), R.raw.victory_sound_effect);
         //victorymusic.start();
