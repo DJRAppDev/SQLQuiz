@@ -25,8 +25,8 @@ public class End extends AppCompatActivity {
 
         String correct = getIntent().getStringExtra("Answer");
 
-        //victorymusic = MediaPlayer.create(getApplicationContext(), R.raw.victory_sound_effect);
-        //victorymusic.start();
+        victorymusic = MediaPlayer.create(getApplicationContext(), R.raw.victory_sound_effect);
+        victorymusic.start();
 
         score.setText(correct+"/30");
         exit.setOnClickListener(new View.OnClickListener() {
@@ -39,7 +39,7 @@ public class End extends AppCompatActivity {
         review.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(End.this,MainActivity.class);
+                Intent intent = new Intent(End.this,Review.class);
                 startActivity(intent);
             }
         });
