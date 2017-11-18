@@ -27,6 +27,7 @@ public class Game extends AppCompatActivity {
     private AppDatabase db;
     private List<Question> questions;
     private Question currentQuestion;
+    private int randomNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,23 +45,24 @@ public class Game extends AppCompatActivity {
         C = findViewById(R.id.choice3);
         D = findViewById(R.id.choice4);
         E = findViewById(R.id.choice5);
-        count = 0;
+        count = 27;
         correct = 0;
         questions = db.quizDao().getQuestions(category);
 
-        currentQuestion = questions.get(count);
+        randomNum = (int)(Math.random()*questions.size());
+        currentQuestion = questions.get(randomNum);
         question.setText((count+1)+"."+currentQuestion.getQuestion());
         A.setText(currentQuestion.getAnsA());
         B.setText(currentQuestion.getAnsB());
         C.setText(currentQuestion.getAnsC());
         D.setText(currentQuestion.getAnsD());
         E.setText(currentQuestion.getAnsE());
-
+        questions.remove(randomNum);
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String userAns = "";
+                String userAns = " ";
                 int btID = radioGroup.getCheckedRadioButtonId();
                 switch (btID) {
                     case R.id.choice1:
@@ -95,7 +97,8 @@ public class Game extends AppCompatActivity {
                 db.quizDao().insertAns(new Answer(currentQuestion.getId(), userAns));
                 count += 1;
                 if (count < 30) {
-                    currentQuestion = questions.get(count);
+                    randomNum = (int)(Math.random()*questions.size());
+                    currentQuestion = questions.get(randomNum);
                     question.setText((count+1)+"."+currentQuestion.getQuestion());
                     A.setText(currentQuestion.getAnsA());
                     B.setText(currentQuestion.getAnsB());
@@ -103,9 +106,10 @@ public class Game extends AppCompatActivity {
                     D.setText(currentQuestion.getAnsD());
                     E.setText(currentQuestion.getAnsE());
                     radioGroup.clearCheck();
-                } //else {
-                    //change();
-               // }
+                    questions.remove(randomNum);
+                } else {
+                    change();
+                }
             }
         });
 
@@ -115,5 +119,5 @@ public class Game extends AppCompatActivity {
         intent.putExtra("Answer", correct);
         startActivity(intent);
     }
-
 }
+

@@ -26,8 +26,8 @@ public class End extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.end);
 
-        victorymusic = MediaPlayer.create(getApplicationContext(), R.raw.victory_sound_effect);
-        victorymusic.start();
+        //victorymusic = MediaPlayer.create(getApplicationContext(), R.raw.victory_sound_effect);
+        //victorymusic.start();
 
         score.setText(correct+"/30");
         exit.setOnClickListener(new View.OnClickListener() {
