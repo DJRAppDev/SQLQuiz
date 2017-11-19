@@ -30,4 +30,8 @@ public interface QuizDao {
 
     @Insert
     void insertAns(Answer answer);
+
+    //EndActivity methods
+    @Query("DELETE FROM answer")
+    void eraseAns();
 }
