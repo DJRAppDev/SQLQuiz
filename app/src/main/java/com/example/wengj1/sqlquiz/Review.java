@@ -49,6 +49,7 @@ public class Review extends AppCompatActivity {
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                db.quizDao().eraseAns();
                 finish();
                 System.exit(0);
             }
@@ -56,6 +57,7 @@ public class Review extends AppCompatActivity {
 
         restart.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+                db.quizDao().eraseAns();
                 Intent intent = new Intent(Review.this, MainActivity.class);
                 startActivity(intent);
                 restartmusic.start();
