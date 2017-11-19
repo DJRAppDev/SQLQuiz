@@ -13,6 +13,7 @@ public class End extends AppCompatActivity {
     Button review;
     TextView score;
     MediaPlayer victorymusic;
+    String category;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +25,7 @@ public class End extends AppCompatActivity {
         score = findViewById(R.id.score);
 
         String correct = getIntent().getStringExtra("Answer");
+        category = getIntent().getStringExtra("Category");
 
         victorymusic = MediaPlayer.create(getApplicationContext(), R.raw.victory_sound_effect);
         victorymusic.start();
@@ -40,6 +42,7 @@ public class End extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(End.this,Review.class);
+                intent.putExtra("Category",category);
                 startActivity(intent);
             }
         });
