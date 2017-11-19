@@ -48,7 +48,7 @@ public class End extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(End.this,Review.class);
-                intent.putExtra("Category",category);
+                intent.putExtra("Category",category+"");
                 startActivity(intent);
             }
         });

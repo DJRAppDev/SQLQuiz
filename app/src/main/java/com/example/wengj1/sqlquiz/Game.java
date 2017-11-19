@@ -4,6 +4,7 @@ import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -119,8 +120,8 @@ public class Game extends AppCompatActivity {
     }
     private void change(){
         Intent intent = new Intent(Game.this, End.class);
-        intent.putExtra("Answer", correct);
-        intent.putExtra("Category",category);
+        intent.putExtra("Answer", correct+"");
+        intent.putExtra("Category",category+"");
         startActivity(intent);
     }
 }

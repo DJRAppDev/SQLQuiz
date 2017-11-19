@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ScrollView;
@@ -34,7 +35,7 @@ public class Review extends AppCompatActivity {
         text = findViewById(R.id.questions);
 
         String category = getIntent().getStringExtra("category");
-
+        Log.d("Tag",category);
         db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "quiz.db").openHelperFactory(new AssetSQLiteOpenHelperFactory()).allowMainThreadQueries().fallbackToDestructiveMigration().build();
         questions = db.quizDao().getQuestions(category);
         restartmusic = MediaPlayer.create(getApplicationContext(), R.raw.mystery_sound_effect);
