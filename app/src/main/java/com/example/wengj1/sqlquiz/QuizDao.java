@@ -26,7 +26,7 @@ public interface QuizDao {
 
     //Answer table methods
     @Query("SELECT * FROM answer")
-    List<Answer> getAns();
+    List<Answer> getUserAns();
 
     @Insert
     void insertAns(Answer answer);
