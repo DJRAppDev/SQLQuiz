@@ -35,7 +35,6 @@ public class Review extends AppCompatActivity {
         text = findViewById(R.id.questions);
 
         String category = getIntent().getStringExtra("Category");
-        Log.d("Tag",category);
         db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "quiz.db").openHelperFactory(new AssetSQLiteOpenHelperFactory()).allowMainThreadQueries().fallbackToDestructiveMigration().build();
         questions = db.quizDao().getQuestions(category);
         restartmusic = MediaPlayer.create(getApplicationContext(), R.raw.mystery_sound_effect);
