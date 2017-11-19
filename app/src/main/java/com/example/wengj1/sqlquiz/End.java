@@ -17,6 +17,7 @@ public class End extends AppCompatActivity {
     TextView score;
     MediaPlayer victorymusic;
     private AppDatabase db;
+    String category;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +30,10 @@ public class End extends AppCompatActivity {
         db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"quiz.db").openHelperFactory(new AssetSQLiteOpenHelperFactory()).allowMainThreadQueries().fallbackToDestructiveMigration().build();
 
         String correct = getIntent().getStringExtra("Answer");
+        category = getIntent().getStringExtra("Category");
 
-        //victorymusic = MediaPlayer.create(getApplicationContext(), R.raw.victory_sound_effect);
-        //victorymusic.start();
+        victorymusic = MediaPlayer.create(getApplicationContext(), R.raw.victory_sound_effect);
+        victorymusic.start();
 
         score.setText(correct+"/30");
         exit.setOnClickListener(new View.OnClickListener() {
@@ -45,7 +47,8 @@ public class End extends AppCompatActivity {
         review.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(End.this,MainActivity.class);
+                Intent intent = new Intent(End.this,Review.class);
+                intent.putExtra("Category",category);
                 startActivity(intent);
             }
         });
