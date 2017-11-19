@@ -21,8 +21,10 @@ public class Review extends AppCompatActivity {
     private ScrollView scroll;
     private TextView text;
     private List<Question> questions;
+    private List<Answer> answers;
     private AppDatabase db;
     private Question currentQuestion;
+    private Answer currentAnswer;
     private MediaPlayer restartmusic;
 
     @Override
@@ -37,14 +39,24 @@ public class Review extends AppCompatActivity {
         String category = getIntent().getStringExtra("Category");
         db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "quiz.db").openHelperFactory(new AssetSQLiteOpenHelperFactory()).allowMainThreadQueries().fallbackToDestructiveMigration().build();
         questions = db.quizDao().getQuestions(category);
+        answers = db.quizDao().getUserAns();
         restartmusic = MediaPlayer.create(getApplicationContext(), R.raw.mystery_sound_effect);
 
-        String allQuestions = "";
+        String everything = "";
         for(int i = 0; i < questions.size(); i++){
-            currentQuestion = questions.get(i);
-            allQuestions += currentQuestion.getQuestion();
+            currentAnswer = answers.get(i);
+            currentQuestion = questions.get(currentAnswer.getId());
+            everything += currentQuestion.getQuestion() + "\n";
+            everything += "A."+currentQuestion.getAnsA() + "\n";
+            everything += "B."+currentQuestion.getAnsB() + "\n";
+            everything += "C."+currentQuestion.getAnsC() + "\n";
+            everything += "D."+currentQuestion.getAnsD() + "\n";
+            everything += "E."+currentQuestion.getAnsE() + "\n";
+            everything += "Your Answer: " + currentAnswer.getUserAns() + "\n";
+            everything += "Correct Answer: " + currentQuestion.getAnswer() + "\n";
+            everything += "\n";
         }
-        text.setText(allQuestions);
+        text.setText(everything);
 
         exit.setOnClickListener(new View.OnClickListener() {
             @Override

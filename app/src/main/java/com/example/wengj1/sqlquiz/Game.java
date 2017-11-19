@@ -48,7 +48,7 @@ public class Game extends AppCompatActivity {
         C = findViewById(R.id.choice3);
         D = findViewById(R.id.choice4);
         E = findViewById(R.id.choice5);
-        count = 27;
+        count = 0;
         correct = 0;
         questions = db.quizDao().getQuestions(category);
 
@@ -97,8 +97,8 @@ public class Game extends AppCompatActivity {
                     default:
                         break;
                 }
-                //answer = new Answer(currentQuestion.getId(),userAns);
-                //db.quizDao().insertAns(answer);
+                answer = new Answer(currentQuestion.getId(),userAns);
+                db.quizDao().insertAns(answer);
                 count += 1;
                 if (count < 30) {
                     randomNum = (int)(Math.random()*questions.size());
