@@ -29,13 +29,14 @@ public class Game extends AppCompatActivity {
     private Question currentQuestion;
     private int randomNum;
     private Answer answer;
+    private String category;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
 
-        String category = getIntent().getStringExtra("category");
+        category = getIntent().getStringExtra("category");
         db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "quiz.db").openHelperFactory(new AssetSQLiteOpenHelperFactory()).allowMainThreadQueries().fallbackToDestructiveMigration().build();
 
         submit = findViewById(R.id.answer);
@@ -95,8 +96,8 @@ public class Game extends AppCompatActivity {
                     default:
                         break;
                 }
-                answer = new Answer(currentQuestion.getId(),userAns);
-                db.quizDao().insertAns(answer);
+                //answer = new Answer(currentQuestion.getId(),userAns);
+                //db.quizDao().insertAns(answer);
                 count += 1;
                 if (count < 30) {
                     randomNum = (int)(Math.random()*questions.size());
@@ -119,6 +120,7 @@ public class Game extends AppCompatActivity {
     private void change(){
         Intent intent = new Intent(Game.this, End.class);
         intent.putExtra("Answer", correct);
+        intent.putExtra("Category",category);
         startActivity(intent);
     }
 }
