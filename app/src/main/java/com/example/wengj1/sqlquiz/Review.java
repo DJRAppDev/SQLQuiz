@@ -34,7 +34,7 @@ public class Review extends AppCompatActivity {
         restart = findViewById(R.id.exitButton2);
         text = findViewById(R.id.questions);
 
-        String category = getIntent().getStringExtra("category");
+        String category = getIntent().getStringExtra("Category");
         Log.d("Tag",category);
         db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "quiz.db").openHelperFactory(new AssetSQLiteOpenHelperFactory()).allowMainThreadQueries().fallbackToDestructiveMigration().build();
         questions = db.quizDao().getQuestions(category);
